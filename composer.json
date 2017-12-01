@@ -1,0 +1,54 @@
+{
+    "name": "manifoldco/manifold-laravel",
+    "type": "library",
+    "description": "A package to pull configurations from your Manifold account",
+    "keywords": [
+        "manifoldco",
+        "manifold"
+    ],
+    "homepage": "https://github.com/manifoldco/manifold-laravel",
+    "authors": [
+        {
+            "name": "TJ Webb",
+            "email": "webb.tj@gmail.com",
+            "homepage": "http://code.webb.tj",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5.1",
+        "php" : "~7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : ">=5.4.3",
+        "squizlabs/php_codesniffer": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "manifoldco\\manifold\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "manifoldco\\manifold\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "manifoldco\\manifold\\manifoldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
