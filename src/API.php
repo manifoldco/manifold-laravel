@@ -5,7 +5,7 @@ namespace manifoldco\manifold;
 class API
 {
     static $URL = 'https://api.marketplace.manifold.co/v1/';
-    static $VERSION = '0.0.0';
+    static $VERSION = '0.1.0';
 
     public function __construct($token){
         $this->token = $token;
