@@ -9,10 +9,13 @@
     "homepage": "https://github.com/manifoldco/manifold-laravel",
     "authors": [
         {
+            "name": "Manifold",
+            "email": "support@manifold.co",
+            "homepage": "https://manifold.co"
+        },
+        {
             "name": "TJ Webb",
-            "email": "webb.tj@gmail.com",
-            "homepage": "http://code.webb.tj",
-            "role": "Developer"
+            "email": "webb.tj@gmail.com"
         }
     ],
     "require": {

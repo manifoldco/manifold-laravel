@@ -1,3 +1,10 @@
+#manifold-laravel
+
+Laravel package connection your Manifold secrets into your Laravel application.
+
+[Code of Conduct](./CODE_OF_CONDUCT.md) |
+[Contribution Guidelines](./.github/CONTRIBUTING.md)
+
 ## Introduction
 The Manifold Laravel package allows you to connect to your Manifold account and
 pull your credentials, keys, configurations, etc. from your Manifold account
