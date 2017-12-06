@@ -33,10 +33,7 @@ class manifoldServiceProvider extends ServiceProvider
         }
 
         $core = new Core;
-        //normal boot
         $core->load_configs();
-        //forcing reload of fresh data
-        // $core->refresh();
 
     }
     /**
