@@ -31,19 +31,24 @@ class API
     }
 
     public function load_resource($resource_id){
-        $resources = $this->server_request('credentials?resource_id=' . $resource_id);
-
         $response = [];
 
-        if(!is_null($resources)){
-            $resources = collect(json_decode($resources));
-            $resources->each(function($resource) use(&$response){
-                if($resource && isset($resource->body) && isset($resource->body->values)){
-                    collect($resource->body->values)->each(function($value, $key) use(&$response){
-                        $response[$key] = $value;
-                    });
-                }
-            });
+        $resource = json_decode($this->server_request('resources/' . $resource_id));
+        if(isset($resource->body) && isset($resource->body->label)){
+            $label = $resource->body->label;
+
+            $resources = $this->server_request('credentials?resource_id=' . $resource_id);
+
+            if(!is_null($resources)){
+                $resources = collect(json_decode($resources));
+                $resources->each(function($resource) use(&$response, $label){
+                    if($resource && isset($resource->body) && isset($resource->body->values)){
+                        collect($resource->body->values)->each(function($value, $key) use(&$response, $label){
+                            $response["$label.$key"] = $value;
+                        });
+                    }
+                });
+            }
         }
 
         return empty($response) ? null : $response;
@@ -66,7 +71,6 @@ class API
 
     public function test_credentials(){
         $response = json_decode($this->server_request('resources'));
-        // dd($response);
         if((isset($response->type) && $response->type == 'unauthorized') || is_null($response)){
             return false;
         }else{

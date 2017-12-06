@@ -33,6 +33,16 @@ class Core
         collect($configs)->each(function($value, $key){
             config([$key => $value]);
         });
+
+        $aliases = config('manifold.aliases');
+        if(!empty($aliases)){
+            $array_dots = collect(array_dot($aliases));
+            $array_dots->each(function($value, $key){
+                if(config($value))
+                    config([$key => config($value)]);
+            });
+        }
+
         return $configs;
     }
 
