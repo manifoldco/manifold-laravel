@@ -38,8 +38,14 @@ class Core
         if(!empty($aliases)){
             $array_dots = collect(array_dot($aliases));
             $array_dots->each(function($value, $key){
-                if(config($value))
+                if(is_callable($value)){
+                    $call_response = $value();
+                    if($call_response){
+                        config([$key => $call_response]);
+                    }
+                }elseif(is_string($value) && config($value)){
                     config([$key => config($value)]);
+                }
             });
         }
 
