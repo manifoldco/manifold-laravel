@@ -34,7 +34,7 @@ follows: `MANIFOLD_API_TOKEN=YOUR-TOKEN-HERE`
 respective IDs in your `.env` file.  
 ```
 MANIFOLD_RESOURCE_ID=YOUR-RESOURCE-ID
-MANIFOLD_PROJECT_ID=YOUR-PROJECT-ID
+MANIFOLD_PROJECT=YOUR-PROJECT-LABEL
 MANIFOLD_PRODUCT_ID=YOUR-PRODUCT-ID
 ```
 
@@ -68,14 +68,14 @@ resource/credential combination does not exist, whatever was already defined in
 `config/database.php` will be used.
 
 ## Examples
-1. You have a project in Manifold with an ID of `01234567890123456789012345678`.
+1. You have a project in Manifold with a label of `my-project`.
 You want your Mailgun API key available in a controller method. Your Mailgun
 resource is named `mailgun` and the API key credential is `API_KEY`.
 
 Add the following to `.env`
 ```
 MANIFOLD_API_TOKEN=0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789AB
-MANIFOLD_PROJECT_ID=01234567890123456789012345678
+MANIFOLD_PROJECT=my-project
 ```
 
 In your controller's php file:
@@ -90,7 +90,7 @@ class MyController extends Controller{
 }
 ```
 
-2. You have a project in Manifold with an ID of `01234567890123456789012345678`.
+2. You have a project in Manifold with a label of `my-project`.
 You want your PostgreSQL credentials from your custom service stored in Manifold.
 Your custom service is named `custom-pgsql` and the PostgreSQL credential keys
 are `DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD`.
@@ -98,7 +98,7 @@ are `DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD`.
 Add the following to `.env`
 ```
 MANIFOLD_API_TOKEN=0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789AB
-MANIFOLD_PROJECT_ID=01234567890123456789012345678
+MANIFOLD_PROJECT=my-project
 ```
 
 In your `config/manifold.php`:
@@ -106,7 +106,7 @@ In your `config/manifold.php`:
 return [
     'token' => env('MANIFOLD_API_TOKEN', null),
     'resource_id' => env('MANIFOLD_RESOURCE_ID', null),
-    'project_id' => env('MANIFOLD_PROJECT_ID', null),
+    'project' => env('MANIFOLD_PROJECT', null),
     'product_id' => env('MANIFOLD_PRODUCT_ID', null),
     'aliases' => [
         /*

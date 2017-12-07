@@ -13,7 +13,7 @@ class Core
 
     static $key_token       = 'manifold.token';
     static $key_product     = 'manifold.product_id';
-    static $key_project     = 'manifold.project_id';
+    static $key_project     = 'manifold.project';
     static $key_resource    = 'manifold.resource_id';
 
     static $DEBUG           = false;
@@ -139,7 +139,15 @@ class Core
                 return 'product_id=' . $this->product;
                 break;
             case self::$PROJECT:
-                return 'project_id=' . $this->project;
+                $projects = json_decode($this->api->server_request('projects?label=' . $this->project));
+                if(count($projects) > 1 || count($projects) < 1){
+                    return null;
+                }else{
+                    if(isset($projects[0]->id)){
+                        return 'project_id=' . $projects[0]->id;
+                    }
+                }
+                return null;
                 break;
             case self::$RESOURCE:
                 return null;

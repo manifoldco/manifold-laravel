@@ -78,7 +78,7 @@ class CoreTest extends TestCase
         $this->assertEquals($this->core->query_string(), 'product_id=' . $this->core->product);
 
         $this->core->resource_level = Core::$PROJECT;
-        $this->assertEquals($this->core->query_string(), 'project_id=' . $this->core->project);
+        $this->assertNotNull($this->core->query_string());
 
         $this->core->resource_level = Core::$RESOURCE;
         $this->assertNull($this->core->query_string());
