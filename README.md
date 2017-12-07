@@ -68,7 +68,7 @@ resource/credential combination does not exist, whatever was already defined in
 `config/database.php` will be used.
 
 ## Examples
-1. You have a project in Manifold with an label of `my-project`.
+1. You have a project in Manifold with a label of `my-project`.
 You want your Mailgun API key available in a controller method. Your Mailgun
 resource is named `mailgun` and the API key credential is `API_KEY`.
 
