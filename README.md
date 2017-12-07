@@ -127,3 +127,51 @@ return [
     ],
 ];
 ```
+
+3. You have a project in Manifold with a label of `my-project`.
+You want your MySQL credentials from your JAWS stored in Manifold.
+Your JAWS service is named `jaws-mysql` and the connection credentials are in
+URL syntax as `JAWSDB_URL`. The URL syntax does not work with Laravel out of the
+box and must be parsed. For this you can pass a closure as the value of an
+alias. The closure receives no parameters, but all configs are loaded so you can
+access and Manifold stored credentials and manipulate them as necessary.
+
+Add the following to `.env`
+```
+MANIFOLD_API_TOKEN=0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789AB
+MANIFOLD_PROJECT=my-project
+```
+
+In your `config/manifold.php`:
+```
+return [
+    'token' => env('MANIFOLD_API_TOKEN', null),
+    'resource_id' => env('MANIFOLD_RESOURCE_ID', null),
+    'project' => env('MANIFOLD_PROJECT', null),
+    'product_id' => env('MANIFOLD_PRODUCT_ID', null),
+    'aliases' => [
+        'database' => [
+            'connections' => [
+                'mysql' => [
+                    'host' => function(){
+                        $url = parse_url(config('custom-service.jaws'));
+                        return $url['host'];
+                    },
+                    'password' => function(){
+                        $url = parse_url(config('custom-service.jaws'));
+                        return $url['pass'];
+                    },
+                    'username' => function(){
+                        $url = parse_url(config('custom-service.jaws'));
+                        return $url['user'];
+                    },
+                    'database' => function(){
+                        $url = parse_url(config('custom-service.jaws'));
+                        return substr($url["path"], 1);
+                    }
+                ]
+            ]
+        ]
+    ],
+];
+```
