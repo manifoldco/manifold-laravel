@@ -38,12 +38,11 @@ class Core
         if(!empty($aliases)){
             $array_dots = collect(array_dot($aliases));
             $array_dots->each(function($value, $key){
+                //Basically just stopped checking if the value is truthy because
+                //maybe they want false/null/0/""
                 if(is_callable($value)){
-                    $call_response = $value();
-                    if($call_response){
-                        config([$key => $call_response]);
-                    }
-                }elseif(is_string($value) && config($value)){
+                    config([$key => $value()]);
+                }elseif(is_string($value)){
                     config([$key => config($value)]);
                 }
             });
