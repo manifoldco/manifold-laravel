@@ -63,9 +63,7 @@ from a custom PostgreSQL service in Manifold could look like this:
 `'database.connections.pgsql.password' => 'custom-pgsql.DB_PASSWORD'`. This will
 pull the `DB_PASSWORD` credential from the `custom-pgsql` resource and assign
 its value to `database.connections.pgsql.password`, so there is no need to
-manipulate your existing `config/database.php` file. If the given
-resource/credential combination does not exist, whatever was already defined in
-`config/database.php` will be used.
+manipulate your existing `config/database.php` file. 
 
 ## Examples
 1. You have a project in Manifold with a label of `my-project`.
