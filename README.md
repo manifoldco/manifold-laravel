@@ -30,12 +30,9 @@ php artisan vendor:publish
 3. Add, at the very least, your Manifold Bearer token to your `.env` file as
 follows: `MANIFOLD_API_TOKEN=YOUR-TOKEN-HERE`
 
-4. You may optionally specify a Resource, Project, or Product by providing their
-respective IDs in your `.env` file.  
+4. You may optionally specify a Project by providing the label in your `.env` file.
 ```
-MANIFOLD_RESOURCE_ID=YOUR-RESOURCE-ID
 MANIFOLD_PROJECT=YOUR-PROJECT-LABEL
-MANIFOLD_PRODUCT_ID=YOUR-PRODUCT-ID
 ```
 
 ## Usage
@@ -63,7 +60,7 @@ from a custom PostgreSQL service in Manifold could look like this:
 `'database.connections.pgsql.password' => 'custom-pgsql.DB_PASSWORD'`. This will
 pull the `DB_PASSWORD` credential from the `custom-pgsql` resource and assign
 its value to `database.connections.pgsql.password`, so there is no need to
-manipulate your existing `config/database.php` file. 
+manipulate your existing `config/database.php` file.
 
 ## Examples
 1. You have a project in Manifold with a label of `my-project`.
@@ -103,9 +100,7 @@ In your `config/manifold.php`:
 ```
 return [
     'token' => env('MANIFOLD_API_TOKEN', null),
-    'resource_id' => env('MANIFOLD_RESOURCE_ID', null),
     'project' => env('MANIFOLD_PROJECT', null),
-    'product_id' => env('MANIFOLD_PRODUCT_ID', null),
     'aliases' => [
         /*
             note that while you can mix and match array syntax and dot-notation
@@ -144,9 +139,7 @@ In your `config/manifold.php`:
 ```
 return [
     'token' => env('MANIFOLD_API_TOKEN', null),
-    'resource_id' => env('MANIFOLD_RESOURCE_ID', null),
     'project' => env('MANIFOLD_PROJECT', null),
-    'product_id' => env('MANIFOLD_PRODUCT_ID', null),
     'aliases' => [
         'database' => [
             'connections' => [
