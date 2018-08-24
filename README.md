@@ -8,6 +8,7 @@ Official Laravel package connecting your [Manifold](https://manifold.co) secrets
 [![GitHub release](https://img.shields.io/github/tag/manifoldco/manifold-laravel.svg?label=latest)](https://github.com/manifoldco/manifold-laravel/releases)
 [![Travis](https://img.shields.io/travis/manifoldco/manifold-laravel/master.svg)](https://travis-ci.org/manifoldco/manifold-laravel)
 [![License](https://img.shields.io/badge/license-BSD-blue.svg)](./LICENSE)
+[![Latest Stable Version](https://poser.pugx.org/manifoldco/manifold-laravel/v/stable)](https://packagist.org/packages/manifoldco/manifold-laravel)
 
 ## Introduction
 
