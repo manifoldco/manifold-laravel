@@ -145,7 +145,7 @@ class Core
                 break;
             case self::$PROJECT:
                 $projects = json_decode($this->api->server_request('projects?label=' . $this->project));
-                if(count($projects) > 1 || count($projects) < 1){
+                if(!is_array($projects) || count($projects) !== 1){
                     return null;
                 }else{
                     if(isset($projects[0]->id)){
