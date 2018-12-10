@@ -1,13 +1,8 @@
 <?php
 
 namespace manifoldco\manifold;
-// use Illuminate\Support\Facades\Cache as SystemCache;
-// use Illuminate\Cache\Repository as SystemCache;
 use manifoldco\manifold\Core;
 use manifoldco\manifold\DiskCache as SystemCache;
-// $app = app();
-// unset($app->abstractAliases['cache']);
-// SystemCache::setFacadeApplication($app);
 
 class Cache
 {
