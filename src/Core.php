@@ -11,10 +11,10 @@ class Core
     static $PROJECT         = 3;
     static $RESOURCE        = 4;
 
-    static $key_token       = 'manifold.token';
-    static $key_product     = 'manifold.product_id';
-    static $key_project     = 'manifold.project';
-    static $key_resource    = 'manifold.resource_id';
+    static $key_token       = '00-manifold.token';
+    static $key_product     = '00-manifold.product_id';
+    static $key_project     = '00-manifold.project';
+    static $key_resource    = '00-manifold.resource_id';
 
     static $DEBUG           = false;
 
@@ -34,7 +34,7 @@ class Core
             config([$key => $value]);
         });
 
-        $aliases = config('manifold.aliases');
+        $aliases = config('00-manifold.aliases');
         if(!empty($aliases)){
             $array_dots = collect(array_dot($aliases));
             $array_dots->each(function($value, $key){
@@ -67,10 +67,12 @@ class Core
         if(Cache::expired($cache_key)){
             self::debug('SERVER');
             $fresh_data = $this->get_fresh_data();
+            self::debug($fresh_data);
             Cache::put($cache_key, $fresh_data);
             return $fresh_data;
         }else{
             self::debug('CACHE');
+            self::debug(Cache::get($cache_key));
             return Cache::get($cache_key);
         }
     }
@@ -98,7 +100,7 @@ class Core
                 $resources = $this->api->resources($this->query_string());
                 $resources->each(function($resource) use(&$configs){
                     $api_loaded_resource = $this->api->load_resource($resource);
-                    
+
                     if(is_array($api_loaded_resource)){
                         $configs = array_merge($configs, $api_loaded_resource);
                     }
@@ -169,7 +171,10 @@ class Core
 
     public static function debug($text){
         if(self::$DEBUG){
-            echo "\n$text\n";
+            if(is_string($text))
+                echo "\n$text\n";
+            else
+                dump($text);
         }
     }
 }
