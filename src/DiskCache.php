@@ -19,7 +19,7 @@ class DiskCache{
         if(is_object($json)){
             if(isset($json->$key)){
                 if(isset($json->$key->expires)){
-                    if($json->$key->expires < time()){
+                    if($json->$key->expires > time()){
                         if(isset($json->$key->value)){
                             return true;
                         }
