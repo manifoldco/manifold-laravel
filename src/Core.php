@@ -97,7 +97,11 @@ class Core
                 $configs = [];
                 $resources = $this->api->resources($this->query_string());
                 $resources->each(function($resource) use(&$configs){
-                    $configs = array_merge($configs, $this->api->load_resource($resource));
+                    $api_loaded_resource = $this->api->load_resource($resource);
+                    
+                    if(is_array($api_loaded_resource)){
+                        $configs = array_merge($configs, $api_loaded_resource);
+                    }
                 });
                 return $configs;
                 break;
@@ -145,7 +149,7 @@ class Core
                 break;
             case self::$PROJECT:
                 $projects = json_decode($this->api->server_request('projects?label=' . $this->project));
-                if(count($projects) > 1 || count($projects) < 1){
+                if(!is_array($projects) || count($projects) !== 1){
                     return null;
                 }else{
                     if(isset($projects[0]->id)){
