@@ -100,7 +100,6 @@ class Core
                 $resources = $this->api->resources($this->query_string());
                 $resources->each(function($resource) use(&$configs){
                     $api_loaded_resource = $this->api->load_resource($resource);
-
                     if(is_array($api_loaded_resource)){
                         $configs = array_merge($configs, $api_loaded_resource);
                     }
