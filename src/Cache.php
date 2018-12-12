@@ -1,8 +1,8 @@
 <?php
 
 namespace manifoldco\manifold;
-use Illuminate\Support\Facades\Cache as SystemCache;
 use manifoldco\manifold\Core;
+use manifoldco\manifold\DiskCache as SystemCache;
 
 class Cache
 {

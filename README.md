@@ -167,3 +167,19 @@ return [
     ],
 ];
 ```
+## Cautions
+1. Laravel's current process for loading config files it to load them
+alphabetically. This package relies on that feature to make sure configurations
+from your Manifold project are available within other configuration files. If
+you create a configuration file whose name comes alphabetically before the
+Manifold configuration files (`00-manifold.php` and `01-manifold.php`), you may
+experience unexpected results. If Laravel changes it's load order, what for
+updates to this package.
+2. This package now uses the local file system to store API caches instead of
+Laravel's cache system, this is to allow the package to cache data from the API
+before the entire application is loaded (meaning before the Cache and Storage
+drivers are available). If you are in an environment where you cannot write to
+the local disk, you will not have caching features and every boot will require
+and API request. Similarly, if the user running the application does not have
+write permissions to `storage/.manifold.cache.key` you will not have caching
+features until this is remedied.

@@ -21,7 +21,9 @@ class manifoldServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config/manifold.php' => config_path('manifold.php'),
+            __DIR__.'/config/00-manifold.php' => config_path('00-manifold.php'),
+            __DIR__.'/config/01-manifold.php' => config_path('01-manifold.php'),
+            __DIR__.'/config/.manifold.cache.key' => storage_path('.manifold.cache.key'),
         ]);
 
         if ($this->app->runningInConsole()) {
@@ -32,8 +34,8 @@ class manifoldServiceProvider extends ServiceProvider
             ]);
         }
 
-        $core = new Core;
-        $core->load_configs();
+        // $core = new Core;
+        // $core->load_configs();
 
     }
     /**
