@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.0] - 2018-12-12
+
+- Updated for Laravel 5.7
+- Deal with situations where packages need to reference config coming in from Manifold package
+- Better NULL handeling if API key is invalid or resources referenced are missing / blank
 
 ## [1.0.0] - 2018-08-24
 
